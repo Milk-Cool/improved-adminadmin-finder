@@ -92,16 +92,14 @@ const main = async () => {
     } else {
         list = question("Enter the IP ranges, separated with a comma: ").split(",").map(x => x.trim());
     }
+    if(OUTFILE) fs.writeFileSync(OUTFILE, "");
     let listFinal = [];
     for(let i of list)
         listFinal = listFinal.concat(processIPs(i));
-    let out = [];
     for(let i of listFinal) {
         const res = await testOne(i);
-        if(res) out.push(i);
+        if(res && OUTFILE) fs.appendFileSync(OUTFILE, i + "\n");
     }
-    if(OUTFILE)
-        fs.writeFileSync(OUTFILE, out.join("\n"));
 }
 
 main();
