@@ -6,6 +6,7 @@ const { parseArgs} = require("util");
 const { question } = require("readline-sync");
 const cluster = require("cluster");
 const { availableParallelism } = require("os");
+const IPCIDR = require("ip-cidr");
 
 const args = parseArgs({
 	"options": {
@@ -64,6 +65,10 @@ const printSuccess = async host => {
 };
 
 const processIPs = (pattern, depth = 0, list = []) => {
+    if(IPCIDR.isValidCIDR(pattern)) {
+        const cidr = new IPCIDR(pattern);
+        return cidr.toArray();
+    }
     if(pattern.includes("*")) {
         for(let i = 0; i < 256; i++)
             list = processIPs(pattern.replace("*", i), depth + 1, list);
