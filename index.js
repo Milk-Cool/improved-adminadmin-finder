@@ -121,8 +121,8 @@ const testOne = async (host, browser) => {
         try {
             const page = await browser.newPage();
             await page.goto(`http://${host}:80`, { "timeout": TIMEOUTWEB });
-            await page.type("input[autocomplete=\"username\"],input[name=\"user\"],input[name=\"username\"],input[name=\"login\"],input[name=\"loginLogin\"],input[type=\"text\"]", "admin");
-            await page.type("input[autocomplete=\"password\"],input[type=\"password\"],input[name=\"pass\"],input[name=\"passphrase\"],input[name=\"password\"]", "admin");
+            await page.type("input[autocomplete=\"username\"],input[name=\"user\"],input[name=\"username\"],input#userName,input[name=\"login\"],input[name=\"loginLogin\"],input[type=\"text\"]", "admin");
+            await page.type("input[autocomplete=\"password\"],input[type=\"password\"],input[name=\"pass\"],input#pcPassword,input[name=\"passphrase\"],input[name=\"password\"]", "admin");
             await page.click("input[type=\"submit\"],button[type=\"submit\"],button");
             const res = await page.waitForNavigation({ "timeout": TIMEOUTWEB });
             if(res.status().toString()[0] == "2") {
