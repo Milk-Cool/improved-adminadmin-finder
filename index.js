@@ -159,7 +159,7 @@ const main = async () => {
             process.stdout.write("\x1b[43m" + Math.round((1 - n / m) * 100).toString().padStart(3) + "%\x1b[0m");
             if(msg[0] == "+") {
                 printSuccess(msg.slice(1));
-                fs.appendFileSync(OUTFILE, msg.slice(1) + "\n");
+                if(OUTFILE) fs.appendFileSync(OUTFILE, msg.slice(1) + "\n");
             } else
                 printFail(msg.slice(1));
             n--;
