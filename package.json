@@ -1,6 +1,6 @@
 {
   "name": "improved-adminadmin-finder",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A program that searches for routers with the login/password pair 'admin:admin' in a specified IP range or in a wordlist",
   "main": "index.js",
   "bin": {
